@@ -1,0 +1,194 @@
+Microsoft Windows [Version 10.0.15063]
+(c) 2017 Microsoft Corporation. All rights reserved.
+
+C:\Users\rkanwal>sqlplus
+
+SQL*Plus: Release 11.2.0.2.0 Production on Thu Dec 6 11:42:27 2018
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+Enter user-name: systeml
+Enter password:
+ERROR:
+ORA-01017: invalid username/password; logon denied
+
+
+Enter user-name:
+ERROR:
+ORA-01017: invalid username/password; logon denied
+
+
+Enter user-name: system
+Enter password:
+
+Connected to:
+Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production
+
+SQL> create table Customer();
+create table Customer()
+                      *
+ERROR at line 1:
+ORA-00904: : invalid identifier
+
+
+SQL> create table Customer( cid number(11) primary key,
+  2  name varchar(20), email varchar(40), phoneNumber number(10), address varchar(40),
+  3  password varchar(10));
+
+Table created.
+
+SQL> desc customer;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CID                                       NOT NULL NUMBER(11)
+ NAME                                               VARCHAR2(20)
+ EMAIL                                              VARCHAR2(40)
+ PHONENUMBER                                        NUMBER(10)
+ ADDRESS                                            VARCHAR2(40)
+ PASSWORD                                           VARCHAR2(10)
+
+SQL> insert values into customer (&cid, &name, &email, &phoneNumber, &address, &password);
+Enter value for cid: 1
+Enter value for name: Roshan
+Enter value for email: ross@gmail.com
+Enter value for phonenumber: 1234567890
+Enter value for address: Bangalore
+Enter value for password: kanwal
+old   1: insert values into customer (&cid, &name, &email, &phoneNumber, &address, &password)
+new   1: insert values into customer (1, Roshan, ross@gmail.com, 1234567890, Bangalore, kanwal)
+insert values into customer (1, Roshan, ross@gmail.com, 1234567890, Bangalore, kanwal)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL> insert values into customer (&cid, &name, &email, &phoneNumber, &address, &password);
+Enter value for cid: 1
+Enter value for name: Roshan
+Enter value for email: ;
+Enter value for phonenumber:
+Enter value for address:
+Enter value for password:
+old   1: insert values into customer (&cid, &name, &email, &phoneNumber, &address, &password)
+new   1: insert values into customer (1, Roshan, ;, , , )
+insert values into customer (1, Roshan, ;, , , )
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL> insert into customer values (&cid, &name, &email, &phoneNumber, &address, &password);
+Enter value for cid: 1
+Enter value for name: Roshan
+Enter value for email: ross@gmail.com
+Enter value for phonenumber: 1234567890
+Enter value for address: Bangalore
+Enter value for password: kanwal
+old   1: insert into customer values (&cid, &name, &email, &phoneNumber, &address, &password)
+new   1: insert into customer values (1, Roshan, ross@gmail.com, 1234567890, Bangalore, kanwal)
+insert into customer values (1, Roshan, ross@gmail.com, 1234567890, Bangalore, kanwal)
+                                                                               *
+ERROR at line 1:
+ORA-00984: column not allowed here
+
+
+SQL> insert into customer values (&cid, '&name', '&email', &phoneNumber, '&address', '&password');
+Enter value for cid: 1
+Enter value for name: Roshan
+Enter value for email: ross@gmail.com
+Enter value for phonenumber: 1234567890
+Enter value for address: Bangalore
+Enter value for password: kanwal
+old   1: insert into customer values (&cid, '&name', '&email', &phoneNumber, '&address', '&password')
+new   1: insert into customer values (1, 'Roshan', 'ross@gmail.com', 1234567890, 'Bangalore', 'kanwal')
+
+1 row created.
+
+SQL> /
+Enter value for cid: 2
+Enter value for name: Mihir
+Enter value for email: ms@gmail.com
+Enter value for phonenumber: 9876543210
+Enter value for address: Maharahstra
+Enter value for password: sawant
+old   1: insert into customer values (&cid, '&name', '&email', &phoneNumber, '&address', '&password')
+new   1: insert into customer values (2, 'Mihir', 'ms@gmail.com', 9876543210, 'Maharahstra', 'sawant')
+
+1 row created.
+
+SQL>
+SQL> Create sequence cid_sequence start with 3 increment by 1 cache 100;
+
+Sequence created.
+
+SQL> insert into customer values( cid_sequence.nextval, '&name', '&email', &phoneNumber, '&Address', '&password');
+Enter value for name: Urvi
+Enter value for email: urvi@gmail.com
+Enter value for phonenumber: 4561237890
+Enter value for address: Mumbai
+Enter value for password: patwa
+old   1: insert into customer values( cid_sequence.nextval, '&name', '&email', &phoneNumber, '&Address', '&password')
+new   1: insert into customer values( cid_sequence.nextval, 'Urvi', 'urvi@gmail.com', 4561237890, 'Mumbai', 'patwa')
+
+1 row created.
+
+SQL> /
+Enter value for name: Varsha
+Enter value for email: var@gmail.com
+Enter value for phonenumber: 1239874560
+Enter value for address: Aurangabad
+Enter value for password: bong
+old   1: insert into customer values( cid_sequence.nextval, '&name', '&email', &phoneNumber, '&Address', '&password')
+new   1: insert into customer values( cid_sequence.nextval, 'Varsha', 'var@gmail.com', 1239874560, 'Aurangabad', 'bong')
+
+1 row created.
+
+SQL> /
+Enter value for name: Kajal
+Enter value for email: kajal@gmail.com
+Enter value for phonenumber: 7879451023
+Enter value for address: Delhi
+Enter value for password: khurade
+old   1: insert into customer values( cid_sequence.nextval, '&name', '&email', &phoneNumber, '&Address', '&password')
+new   1: insert into customer values( cid_sequence.nextval, 'Kajal', 'kajal@gmail.com', 7879451023, 'Delhi', 'khurade')
+
+1 row created.
+
+SQL> select * from customer;
+
+       CID NAME                 EMAIL
+---------- -------------------- ----------------------------------------
+PHONENUMBER ADDRESS                                  PASSWORD
+----------- ---------------------------------------- ----------
+         1 Roshan               ross@gmail.com
+ 1234567890 Bangalore                                kanwal
+
+         2 Mihir                ms@gmail.com
+ 9876543210 Maharahstra                              sawant
+
+         3 Urvi                 urvi@gmail.com
+ 4561237890 Mumbai                                   patwa
+
+
+       CID NAME                 EMAIL
+---------- -------------------- ----------------------------------------
+PHONENUMBER ADDRESS                                  PASSWORD
+----------- ---------------------------------------- ----------
+         4 Varsha               var@gmail.com
+ 1239874560 Aurangabad                               bong
+
+         5 Kajal                kajal@gmail.com
+ 7879451023 Delhi                                    khurade
+
+
+SQL>
+
+
+
+
+
+
+
+
+
+
