@@ -4,6 +4,13 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <style>
+
+table{
+align : center;
+margin : auto;
+}
+
+
 .box{
 width :420px;
 height :350px;
@@ -13,7 +20,7 @@ border-sizing :border-box;
 top:30%;
 right:10%;
 color:#000;
- margin: 10px 100px;
+margin: 10px 100px;
 position :absolute;
 transform :Translate(-50%,-50%);
 }
@@ -27,43 +34,47 @@ h4{
  
  font-size:16px;
  }
- button{
+.one{
  background-color :MediumSeaGreen;
 	height:40px;
 	margin: 5px 20px;
 	width: 100px;
+	border : MediumSeaGreen
+	
  }
+ 
+
 
 </style>
 </head>
 <body>
-<form >
-<div class=box>
+
+<form action = "/ShoppingCart/jsp/create_account.jsp" method ="post">
+<div class="box" >
 <h4 ><b>Registration</b></h4>
+
 <table>
-	<tr><td><label name="name">name</label></td>
-	<td> <input type ="text" placeholder ="name" name="name"></td></tr>
+	<tr><td> Full Name:</td>
+	<td> <input type ="text" placeholder ="Enter your full name." name="name"></td></tr>
 	
-	<tr><td><label name="username">username</label></td>
-	<td> <input type ="text" placeholder ="username" name="username"></td></tr>
+	<tr><td>Email:</td>
+	<td> <input type ="text" placeholder ="Enter your email." name="email"></td></tr>
 	
-	<tr><td><label name="email">Email</label></td>
-	<td> <input type ="text" placeholder ="Email" name="email"></td></tr>
+	<tr><td>Password:</td>
+	<td> <input type ="text" placeholder ="Enter the password." name="password"></td></tr>
 	
-	<tr><td><label name="password">passowrd</label></td>
-	<td> <input type ="text" placeholder ="password" name="password"></td></tr>
+	<tr><td>Address:</td>
+	<td> <input type ="text" placeholder ="Enter your Address." name="address" ></td></tr>
 	
-	<tr><td><label name="address">address</label></td>
-	<td> <input type ="text" placeholder ="address" name="address" ></td></tr>
-	
-	<tr><td><label name="mobile no" >mobile number</label></td>
-	<td> <input type ="text" placeholder ="mobile number"></td></tr><br/>
-	 <tr> <td><button id="one" type="submit">Submit</button></td>
-      
-        <td><button id="one" type="cancel">Cancel</button></td></tr>
-      
-</table>
+	<tr><td>Phone Number:</td>
+	<td> <input type ="text" placeholder ="Enter your phone num."></td></tr></table>
+	<br><br>
+	 <input class="one" type="submit" value ="Register">
+      <button class="one" type="reset">Cancel</button>
+    
+
 </div>
 	</form>
+	
 </body>
 </html>
