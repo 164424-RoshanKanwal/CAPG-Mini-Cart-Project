@@ -1,9 +1,11 @@
 
 
 body{
-font-family : Arial;}
+font-family : Arial;
+margin: auto;}
 
 .container{
+margin: auto;
 width :420px;
 height :350px;
 text-align:center;

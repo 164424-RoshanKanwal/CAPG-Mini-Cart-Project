@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<form action="/ShoppingCart/jsp/validate2.jsp">
+<form action="validate2.jsp">
 <div class=container ><br/>
  <label for="usernameId"><b>Email/Phone Number</b></label><br/>
 
@@ -19,7 +19,8 @@
    </p>      
       <input id="one" type="submit" value = "Login" style= "background-color :MediumSeaGreen; height : 30px"><br/>
       <br/>
-     <a href="signup.html" >New User?</a>
+     <a href="register.jsp" >New User?</a> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+     <a href="forgotPassword.jsp" >Forgot Password?</a>
   </div>
 
 </form>
