@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.cg.shopcart.dao.ConnectionFactory;
+
 public class Database {
 
 	static Connection connection = ConnectionFactory.getConnection();
@@ -34,7 +36,7 @@ public class Database {
 		boolean status2 = false;
 		try {
 	
-		 PreparedStatement statement = connection.prepareStatement("select * from customer where name =? and password =?");
+		 PreparedStatement statement = connection.prepareStatement("select * from customer where email =? and password =?");
 			statement.setString(1, userName);
 			statement.setString(2, password);
 			ResultSet set = statement.executeQuery();
@@ -55,14 +57,29 @@ public class Database {
 	
 	public static boolean forgotPassword(String email, String mobileNo, String password){
 		boolean status = false;
+		PreparedStatement statement;
+	
 		try {
-			 PreparedStatement statement = connection.prepareStatement("Update customer set password = ? where email =? and phoneNumber =?");
-				statement.setString(1, password);
-				statement.setString(2, email);
-				statement.setString(3, mobileNo);
-				statement.executeUpdate();
-				status = true;
-				System.out.println(status);
+			 statement = connection.prepareStatement("Select name from customer where email =? and phoneNumber =?");
+			 
+				statement.setString(1,email);
+				statement.setString(2,mobileNo);
+				ResultSet set = statement.executeQuery();
+				if(set.next()){
+					statement = connection.prepareStatement("update customer set password =? where email =? and phoneNumber=?");
+					statement.setString(1,password);
+					statement.setString(2,email);
+					statement.setString(3,mobileNo);
+					statement.executeUpdate();
+					System.out.println("sahi aadmi hai isse jane do");
+					status = true;
+				}
+				else{
+					System.out.println("roko bc ko");
+					status = false;
+				}
+				
+				//System.out.println(status);
 				
 			 } catch (SQLException e) {
 				e.printStackTrace();

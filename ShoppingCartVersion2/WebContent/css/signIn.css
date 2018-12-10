@@ -1,11 +1,4 @@
-
-
-body{
-font-family : Arial;
-margin: auto;}
-
 .container{
-margin: auto;
 width :420px;
 height :350px;
 text-align:center;
@@ -29,18 +22,25 @@ input[type=text], input[type=password] {
     box-sizing: border-box;
 }
 
-#one{
+#submit{
  width:300px;
+ background-color: purple; 
+ height: 35px; 
+ color: white; 
+ font-size: 20px; 
+ border :none;
 }
-#two{
-	width : 70px;
-	text-align : right;
-	
-}
-
 
 label{
 	font-size : 18px;
  	margin: 5px 20px;
- 	
+ 	align:center;
+ 	font-weight: bold; 	
+}
+
+#right{
+	float:right;
+}
+#left{
+	float:left;
 }

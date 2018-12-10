@@ -15,7 +15,7 @@ String mobileNo =request.getParameter("mobile");//number in html and varchar in 
 String password =request.getParameter("password");
 
 boolean status = Database.forgotPassword(email, mobileNo, password);
-System.out.println(status);
+//System.out.println(status);
 
 RequestDispatcher reqD = null;
 if(status == true){
